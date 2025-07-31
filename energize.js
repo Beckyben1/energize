@@ -7,34 +7,35 @@ function hideSidebar() {
   sidebar.style.display = "none";
 }
 
+/* javascript code for faq section */
 document.addEventListener("DOMContentLoaded", () => {
-  const faqContainer = document.querySelector(".accordion-item");
+  const faqContainer = document.querySelector(".accordion");
 
   faqContainer.addEventListener("click", (e) => {
-    const groupHeader = e.target.closest(".accordion-header");
+    const header = e.target.closest(".accordion-header");
 
-    if (!groupHeader) return;
+    if (!header) return;
 
-    const group = groupHeader.parentElement;
-    const groupBody = group.querySelector(".accordion-body");
-    const icon = groupHeader.querySelector("i");
+    const item = header.parentElement;
+    const body = item.querySelector(".accordion-body");
+    const icon = header.querySelector("i");
 
     // Toggle icon
     icon.classList.toggle("fa-plus");
     icon.classList.toggle("fa-minus");
 
-    // Toggle visibility of body
-    groupBody.classList.toggle("open");
+    // Toggle visibility
+    body.classList.toggle("open");
 
-    // Close other open FAQ bodies
-    const otherGroups = faqContainer.querySelectorAll(".accordion");
+    // Close other open items
+    const allItems = faqContainer.querySelectorAll(".accordion-item");
 
-    otherGroups.forEach((otherGroup) => {
-      if (otherGroup !== group) {
-        const otherGroupBody = otherGroup.querySelector(".accordion-body");
-        const otherIcon = otherGroup.querySelector(".accordion-header");
+    allItems.forEach((otherItem) => {
+      if (otherItem !== item) {
+        const otherBody = otherItem.querySelector(".accordion-body");
+        const otherIcon = otherItem.querySelector(".accordion-header i");
 
-        otherGroupBody.classList.remove("open");
+        otherBody.classList.remove("open");
         otherIcon.classList.remove("fa-minus");
         otherIcon.classList.add("fa-plus");
       }
